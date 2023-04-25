@@ -1,35 +1,25 @@
-FROM golang:1.11.1-alpine3.8
+FROM golang:1.20-alpine as builder
 
 ENV TZ=Asia/Shanghai
 
-RUN apk --update add git \
-  && mkdir /usr/local/go/src/vendor/github.com \
-  && cd /usr/local/go/src/vendor/github.com \
-  && mkdir PuerkitoBio \
-  && cd PuerkitoBio \
-  && git clone https://github.com/PuerkitoBio/goquery \
-  && cd /usr/local/go/src/vendor/github.com \
-  && mkdir andybalholm \
-  && cd andybalholm \
-  && git clone https://github.com/andybalholm/cascadia \
-  && cd /usr/local/go/src/vendor/github.com \
-  && mkdir op \
-  && cd op \
-  && git clone https://github.com/op/go-logging \
-  && cd /usr/local/go/src/vendor/ \
-  && mkdir golang.org \
-  && cd golang.org \
-  && mkdir x \
-  && cd x \
-  && git clone https://github.com/golang/crypto \
-  && git clone https://github.com/golang/net \
-  && cd /usr/local/go/src/ \
-  && git clone https://github.com/moyuanz/hahajing \
-  && cd hahajing/ \
-  && set GOARCH=amd64 \
-  && set GOOS=linux \
-  && go build
+RUN apk --update add gcc musl-dev linux-headers git
 
-WORKDIR "/usr/local/go/src/hahajing"
+WORKDIR /build
+
+COPY ./ ./
+RUN go mod download
+COPY *.go ./
+
+RUN  go build  -ldflags="-w -s"
+
+FROM alpine:3
+
+WORKDIR /app
+
+RUN apk update --no-cache && apk upgrade
+
+COPY --from=builder /build/hahajing /app/hahajing
+COPY ./config /app/config
+
 EXPOSE 80
 CMD ["nohup", "./hahajing", "server"]
