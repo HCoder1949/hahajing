@@ -25,12 +25,22 @@
 - 服务器(比如Ubuntu)
     * nohup hahajing server &
     * 打开浏览器访问服务器
+-- docker
+```bash
+   docker run --it -p 127.0.0.1:8080:80 chenjia404/hahajing
+```
+
 - 文件说明
     * config/kad/nodes.dat 可以使用emule里面的同名文件
     * config/web/home.html 前端页面，可以自己修改
 - **注意**: 可执行文件一定要跟**config**目录在同一个目录夹下。
 
 ---
+
+### 打包
+
+goreleaser release --skip-publish --rm-dist
+
 ### 运行图示
 ![home](./doc/home.png)
 ![result](./doc/result.png)

@@ -1,6 +1,8 @@
 build image yourself with Dockerfile:
-  docker build . -t hahajing
-  docker run -itd -p 80:80  hahajing
-
+```bash
+  docker build -f ./Dockerfile -t hahajing ../
+```
 download from docker hub and run with docker-compose:
+```bash
   docker-compose up -d
+```

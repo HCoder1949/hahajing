@@ -26,10 +26,20 @@
 - Server side(e.g. Ubuntu)
     * nohup hahajing server &
     * Open browser to visit the server
+
+- docker side
+```bash
+   docker run --it -p 127.0.0.1:8080:80 chenjia404/hahajing
+```
     
 - **Note**: Make sure executable file is at same directory with **config** directory.
 
 ---
+
+### releaser
+
+goreleaser release --skip-publish --rm-dist
+
 ### What it looks like
 ![home](./doc/home.png)
 ![result](./doc/result.png)

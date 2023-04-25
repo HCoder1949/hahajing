@@ -22,4 +22,4 @@ COPY --from=builder /build/hahajing /app/hahajing
 COPY ./config /app/config
 
 EXPOSE 80
-CMD ["nohup", "./hahajing", "server"]
+CMD ["./hahajing", "server"]
