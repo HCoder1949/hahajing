@@ -27,7 +27,7 @@
     * 打开浏览器访问服务器
 -- docker
 ```bash
-   docker run --it -p 127.0.0.1:8080:80 chenjia404/hahajing
+   docker run -it -p 127.0.0.1:8080:80 chenjia404/hahajing
 ```
 
 - 文件说明
