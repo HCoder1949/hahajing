@@ -13,10 +13,7 @@
 ### How to build
 - It's developed with VS code on Windows. So you can open project by VS code and build it.
 - For Linux, e.g. on Ubuntu(64bit), you can use below commands to build it
-    * set GOARCH=amd64
-    * set GOOS=linux
-    * go mod tidy
-    * go build
+    * go build -trimpath -ldflags="-w -s"
 
 ---
 ### How to run

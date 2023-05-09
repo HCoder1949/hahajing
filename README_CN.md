@@ -10,10 +10,7 @@
 ### 如何编译
 - 这个项目是在Windows上的VS code开发，所以你也可以用VS code编译它。
 - 对于Linux，比如Ubuntu(64bit)， 你可以用下面的命令编译它
-    * set GOARCH=amd64
-    * set GOOS=linux
-    * go mod tidy
-    * go build
+    * go build -trimpath -ldflags="-w -s"
 
 
 ---
